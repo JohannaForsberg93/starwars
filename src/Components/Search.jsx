@@ -3,52 +3,80 @@ import axios from "axios";
 
 function Search() {
 	const [state, setState] = useState([]);
+	const [search, setSearch] = useState("");
+	const [filtered, setFiltered] = useState([]);
 
+	//Sökfunktion------------------------------------------------------------
+	useEffect(() => {
+		setFiltered(
+			state.filter((element) =>
+				element.name.toLowerCase().includes(search.toLowerCase())
+			)
+		);
+	}, [search]);
+
+	// Api-anrop-------------------------------------------------------------------
 	useEffect(() => {
 		function getPersons() {
-			console.log("Nu är jag i getPersons-funktionen");
-			let url = "https://swapi.dev/api/people/";
-
-			axios
-				.get(url)
-				.then((response) => {
-					// console.log("This is the response", response);
-					// console.log("Response.data", response.data);
-					// console.log("Response.data.next", response.data.next);
-					// console.log("Response.data.count", response.data.count);
-
-					// while (response.data.next != null || undefined) {
-					// 	url = response.data.next;
-					// 	console.log("Detta är värdet av url i while-loopen", url);
-					// }
-
-					setState(response.data.results); //state får värdet av results, 10 första namn
-					console.log("Värdet av state är nu", state); //Varför undefined????
-				})
-				.catch((error) => {
-					console.log("Something went wrong", error);
-				});
+			let url = "https://swapi.dev/api/people/?page=";
+			let i;
+			for (i = 1; i <= 9; i++) {
+				axios
+					.get(url + i)
+					.then((response) => {
+						setState(response.data.results);
+					})
+					.catch((error) => {
+						console.log("Something went wrong", error);
+					});
+			}
 		}
 		getPersons();
 	}, []);
-	//Här börjar template-------------------------------------------------------
+
+	console.log("Värdet av state", state); //state har värdet av alla personer men visar bara 10 i taget
+
+	// Template ------------------------------------------------------------------
 	return (
 		<div>
 			<h2>Search-component</h2>
+			<br />
+			<input
+				type="text"
+				placeholder="Sök efter person"
+				value={search}
+				onChange={(e) => setSearch(e.target.value)}
+			/>
 			<ul>
-				{state.map((item) => (
-					<li key={item.id}>
-						Character: {item.name} Gender: {item.gender}
-					</li>
+				{filtered.map((person) => (
+					<li key={person.name}> Name: {person.name}</li>
 				))}
 			</ul>
+			<ul>
+				{state.map((person) => (
+					<li key={person.name}>Name: {person.name}</li>
+				))}
+			</ul>
+			<br />
+
+			<br />
 		</div>
 	);
 }
 
-export default Search;
-
-// function showPeople({ people }) {
+{
+	/* 
 // 	console.log("Värdet av people är", people);
 // 	return <div>{people}</div>;
 // }
+
+// searchSpace = (event) => {
+// 	console.log("Värdet av event", event);
+// 	let keyword = event.target.value;
+// 	console.log("värdet av keyword", keyword);
+// 	setState(keyword);
+// };
+// searchSpace(); */
+}
+
+export default Search;
