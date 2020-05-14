@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import Search from "./Components/Search";
-// import SearchBackup from "./Components/SearchBackup";
+import Nav from "./Components/Nav";
 import axios from "axios";
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
 					))}
 				</ul> */}
 				<Header />
-				<Search />
-				{/* <SearchBackup /> */}
+				<Nav />
+				{/* <Search /> */}
 			</header>
 		</div>
 	);
