@@ -1,9 +1,13 @@
 import React from "react";
+import Nav from "./Nav";
+import "../header.css";
 
-const Header = () => {
+const Header = ({ favorites, input }) => {
 	return (
 		<div>
-			<h1>This is the header</h1>
+			<h1 className="header-style">Star Wars API</h1>
+			<Nav favorites={favorites} input={input} />
+			{/* name={name} skill={skill} skin={skin} */}
 		</div>
 	);
 };

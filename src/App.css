@@ -1,8 +1,23 @@
 .App {
 	text-align: center;
 	background-color: #282c34;
+	color: yellow;
 }
-
+button {
+	color: #20242c;
+	font-size: 15px;
+	margin: 10px;
+	font-weight: 600;
+	background-color: rgb(253, 204, 99);
+	border-radius: 5px;
+	border: none;
+	padding: 7px;
+	box-shadow: 0px 0px 5px rgba(255, 237, 72, 0.74);
+}
+button:hover {
+	background-color: rgb(250, 211, 126);
+	cursor: pointer;
+}
 .App-header {
 	background-color: #282c34;
 	/* min-height: 100vh; */
@@ -21,7 +36,7 @@
 	margin-top: 20px;
 }
 
-.search-component input {
+.search-component-input {
 	width: 75%;
 	padding: 15px;
 	color: #464646;
@@ -32,13 +47,11 @@
 	background: none;
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
 	background-color: rgb(241, 238, 238);
-	/* background-color: rgba(255, 255, 255, 0.753); */
 	border-radius: 0px 16px 0px 16px;
 	transition: 0.4s;
 }
-.search-component input:hover {
+.search-component-input:hover {
 	background-color: rgb(241, 238, 238);
-	/* background-color: rgba(255, 255, 255, 0.63); */
 	box-shadow: 2px 2px 3px rgba(255, 251, 36, 0.514);
 }
 .search-wrapper {
@@ -63,9 +76,13 @@
 .nav-ul li {
 	border: 1px solid grey;
 	padding: 8px;
+	margin: 10px;
 	border-radius: 5px;
 	font-weight: 500;
 }
 .nav-ul li:hover {
 	font-style: italic;
+}
+.test {
+	border: 1px solid pink;
 }

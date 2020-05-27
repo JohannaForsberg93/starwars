@@ -1,0 +1,18 @@
+.nav-component {
+	text-align: center;
+}
+button {
+	color: #20242c;
+	font-size: 15px;
+	margin: 10px;
+	font-weight: 600;
+	background-color: rgb(253, 204, 99);
+	border-radius: 5px;
+	border: none;
+	padding: 7px;
+	box-shadow: 0px 0px 5px rgba(255, 237, 72, 0.74);
+}
+button:hover {
+	background-color: rgb(250, 211, 126);
+	cursor: pointer;
+}

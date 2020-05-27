@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Favorite from "./Favorite";
 
 function Search() {
 	const [state, setState] = useState([]);
 	const [search, setSearch] = useState("");
 	const [filtered, setFiltered] = useState([]);
+	const [favorite, setFavorite] = useState([]);
 
 	useEffect(() => {
 		setFiltered(
@@ -21,7 +23,6 @@ function Search() {
 	useEffect(() => {
 		async function getPersons(i) {
 			let url = "https://swapi.dev/api/people/?page=";
-
 			const response = await axios.get(url + i);
 			return await response;
 		}
@@ -33,11 +34,14 @@ function Search() {
 				array = array.concat(result.data.results); //array får all data från get-request x9
 			}
 			setState(array);
-			console.log("detta är state, array", array);
+			// console.log("detta är state, array", array);
 		}
+		getPersons();
 		loopFunction();
 
 		// function getPersons() {
+		// 	let url = "https://swapi.dev/api/people/?page=";
+		// 	let i;
 
 		// 	// let url = "https://swapi.dev/api/people/?page=";
 		// 	// let i;
@@ -56,13 +60,18 @@ function Search() {
 		// getPersons();
 	}, []);
 
-	console.log("Värdet av state", state); //state har värdet av alla personer men visar bara 10 i taget
+	useEffect(() => {
+		localStorage.setItem("save", favorite);
+	}, [favorite]);
+	// useEffect(() => {
+	// 	localStorage.setItem("saving", favorite);
+	// }, [favorite]);
+
+	// console.log("Värdet av favorite är", favorite);
+	// console.log("Värdet av state", state); //state har värdet av alla personer men visar bara 10 i taget
 
 	return (
 		<div className="search-component">
-			<h2 className="test">Search-component</h2>
-			<br />
-
 			<h4>
 				Search for a Star Wars character by name, eye color, hair color or
 				gender!
@@ -74,21 +83,41 @@ function Search() {
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 			/>
-			<div className="search-wrapper">
-				{filtered.map((person) => (
-					<div key={person.name}>
-						<h2>{person.name}</h2>
-						Eye color: {person.eye_color} <br />
-						Hair color: {person.hair_color}
-						<br />
-						Birth year: {person.birth_year}
-					</div>
-				))}
-			</div>
+
 			<br />
+			<h4>This is your favorites</h4>
+			{favorite}
 			<br />
 		</div>
 	);
 }
 
 export default Search;
+
+// ,
+// 									localStorage.setItem("saving", favorite)
+
+{
+	/* <div className="search-wrapper">
+	{filtered.map((person) => (
+		<div key={person.name}>
+			<h2>{person.name}</h2>
+			Eye color: {person.eye_color} <br />
+			Hair color: {person.hair_color}
+			<br />
+			Gender: {person.gender}
+			<br />
+			<br />
+			<button onClick={() => setFavorite([...favorite, person.name])}>
+
+				Favorit
+			</button>
+			<br />
+		</div>
+	))}
+</div>; */
+}
+
+{
+	/* OnClick körs setFavorite där den tar allt som finns i favorite-arrayen och lägger till person.name  */
+}
