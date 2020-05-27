@@ -1,7 +1,3 @@
-.header-style {
-	letter-spacing: 3px;
-	font-size: 4em;
-}
 .favorite-wrapper {
 	background-color: teal;
 	/* width: 100vh;
@@ -9,6 +5,7 @@
 	padding: 15px;
 	margin-top: 40px;
 }
+
 .fav-wrapper {
 	display: grid;
 	margin: 10px;

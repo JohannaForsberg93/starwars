@@ -86,3 +86,24 @@ button:hover {
 .test {
 	border: 1px solid pink;
 }
+.input-h2 {
+	margin: 30px;
+}
+@media screen and (max-width: 768px) {
+	.search-wrapper {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+@media screen and (max-width: 500px) {
+	.search-wrapper {
+		grid-template-columns: 1fr;
+	}
+	.input-style {
+		font-size: 1.6em;
+		width: 60%;
+	}
+	.style-h4 {
+		font-size: 1.8em;
+		margin: 10px;
+	}
+}

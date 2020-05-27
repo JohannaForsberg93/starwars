@@ -66,7 +66,7 @@ function App() {
 
 			<div>
 				<br />
-				<h2>
+				<h2 className="input-h2">
 					Search for a Star Wars character by name, eye color, hair color or
 					gender!
 				</h2>
@@ -83,7 +83,7 @@ function App() {
 				</div>
 
 				<br />
-				<h4>Or create your own character!</h4>
+				<h4 className="style-h4">Or create your own character!</h4>
 				<form onSubmit={handleSubmit}>
 					<input
 						className="input-style"
@@ -116,7 +116,7 @@ function App() {
 				</form>
 				{/* {showCreate ? <Add /> : null} */}
 				<br />
-
+				{/* 
 				<div>
 					{favorite.map((person) => (
 						<div key={person.id}>
@@ -128,8 +128,7 @@ function App() {
 							<br />
 						</div>
 					))}
-				</div>
-
+				</div> */}
 				<br></br>
 			</div>
 			<div className="search-wrapper">

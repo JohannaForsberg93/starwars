@@ -7,7 +7,7 @@ function Favorite({ favorites, input }) {
 	return (
 		<div className="favorite-wrapper">
 			<div>
-				<h1 className="header-style">Star wars favorites</h1>
+				<h1>Star wars favorites</h1>
 				<div className="fav-wrapper">
 					{favorites.map((person) => (
 						<div className="fav-style" key={person.id}>
