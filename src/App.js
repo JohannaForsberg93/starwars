@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Components/Header";
-import Nav from "./Components/Nav";
+// import Nav from "./Components/Nav";
 import axios from "axios";
-import Add from "./Components/Add";
+// import Add from "./Components/Add";
 import "./add.css";
 
 function App() {
-	const [state, setState] = useState([]);
+	const [state, setState] = useState([]); //Api-state
 	const [search, setSearch] = useState("");
 	const [filtered, setFiltered] = useState([]);
-	const [favorite, setFavorite] = useState([]);
-	// const [showCreate, setCreate] = useState(false); //Visa add-component
-	const [input, setInput] = useState([{}]);
+	const [favorite, setFavorite] = useState([]); //Star wars-favoriterna
+	// const [input, setInput] = useState([]); // Egna favoriter
+	const [input, setInput] = useState([]);
+	const [newFav, setFav] = useState([]);
 	const [success, setSuccess] = useState(false);
 
 	useEffect(() => {
@@ -42,26 +43,29 @@ function App() {
 			}
 			setState(array);
 		}
-		getPersons();
+		// getPersons();
 		loopFunction();
 	}, []);
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log("event.target.value är", e);
-		console.log("Värder av test är nu", input);
+
 		e.target.reset();
 		setSuccess(true);
+		setFavorite([...favorite, { ...input }, { unreal: true }]); //Davids lösning
+		console.log("Värdet av favorite är nu", favorite);
+		// setFav({ ...input }, [...newFav]);
+		// console.log("Input", input);
+		// console.log("Newfav", newFav);
 	}
 	function handleChange(e) {
 		setInput({ ...input, [e.currentTarget.name]: e.currentTarget.value });
-		// console.log("Värdet av input är", input);
 	}
-
+	// input={input}
 	return (
 		<div className="App">
 			<header className="App-header">
-				<Header favorites={favorite} input={input} />
+				<Header favorites={favorite} />
 			</header>
 
 			<div>
@@ -114,21 +118,8 @@ function App() {
 					<input type="submit" className="add-button" value="Add" />
 					{success ? <h4>Successfully uploaded to Favorites!</h4> : null}
 				</form>
-				{/* {showCreate ? <Add /> : null} */}
+
 				<br />
-				{/* 
-				<div>
-					{favorite.map((person) => (
-						<div key={person.id}>
-							<h2>{person.name}</h2>
-							Eye color: {person.eye_color} <br />
-							Hair color: {person.hair_color}
-							<br />
-							Gender: {person.gender}
-							<br />
-						</div>
-					))}
-				</div> */}
 				<br></br>
 			</div>
 			<div className="search-wrapper">
@@ -143,7 +134,9 @@ function App() {
 						<br />
 						<p>Add to favorite</p>
 						<button onClick={() => setFavorite([...favorite, person])}>
-							❤️
+							<span role="img" aria-label="heart">
+								❤️
+							</span>
 						</button>
 					</div>
 				))}

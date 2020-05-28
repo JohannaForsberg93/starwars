@@ -13,7 +13,12 @@ function Nav({ favorites, input }) {
 			<div className="nav-component">
 				{/* <h1>This is Nav</h1> */}
 
-				<button onClick={showFavoriteComponent}>Favorites ❤️</button>
+				<button onClick={showFavoriteComponent}>
+					Favorites{" "}
+					<span role="img" aria-label="heart">
+						❤️
+					</span>
+				</button>
 
 				{showFav ? <Favorite favorites={favorites} input={input} /> : null}
 			</div>

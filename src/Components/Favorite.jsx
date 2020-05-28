@@ -1,7 +1,7 @@
 import React from "react";
 import "../favorite.css";
 // name, skill, skin
-function Favorite({ favorites, input }) {
+function Favorite({ favorites }) {
 	// console.log("Värdet av input", input);
 	// console.log("Värdet av favorite", favorites);
 	return (
@@ -25,11 +25,11 @@ function Favorite({ favorites, input }) {
 			<h2>Your favorites</h2>
 			<div className="fav-wrapper">
 				<div className="fav-style">
-					<h2>{input.name}</h2>
+					<h2>{favorites.names}</h2>
 					<br></br>
-					Special skill: {input.skill}
+					Special skill: {favorites.skill}
 					<br></br>
-					Skin texture: {input.skin}
+					Skin texture: {favorites.skin}
 				</div>
 				<div className="fav-style">
 					<h2>Moe</h2>
