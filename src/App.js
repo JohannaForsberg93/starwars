@@ -12,7 +12,7 @@ function App() {
 	const [filtered, setFiltered] = useState([]);
 	const [favorite, setFavorite] = useState([]); //Star wars-favoriterna
 	// const [input, setInput] = useState([]); // Egna favoriter
-	const [input, setInput] = useState([]);
+	const [input, setInput] = useState({}); //Egna favoriter
 	const [newFav, setFav] = useState([]);
 	const [success, setSuccess] = useState(false);
 
@@ -49,11 +49,12 @@ function App() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
 		e.target.reset();
 		setSuccess(true);
-		setFavorite([...favorite, { ...input }, { unreal: true }]); //Davids lösning
+
+		setFavorite([...favorite, { ...input }]); //Davids lösning
 		console.log("Värdet av favorite är nu", favorite);
+		console.log("Värdet av input", input);
 		// setFav({ ...input }, [...newFav]);
 		// console.log("Input", input);
 		// console.log("Newfav", newFav);

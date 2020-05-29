@@ -25,7 +25,7 @@ function Favorite({ favorites }) {
 			<h2>Your favorites</h2>
 			<div className="fav-wrapper">
 				<div className="fav-style">
-					<h2>{favorites.names}</h2>
+					<h2>{favorites.name}</h2>
 					<br></br>
 					Special skill: {favorites.skill}
 					<br></br>
