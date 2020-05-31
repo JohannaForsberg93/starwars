@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Components/Header";
-// import Nav from "./Components/Nav";
 import axios from "axios";
-// import Add from "./Components/Add";
 import "./add.css";
 
 function App() {
