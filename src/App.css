@@ -8,14 +8,15 @@ button {
 	font-size: 15px;
 	margin: 10px;
 	font-weight: 600;
-	background-color: rgb(253, 204, 99);
+	/* background-color: rgb(253, 204, 99); */
+	background-color: rgb(255, 182, 25);
 	border-radius: 5px;
 	border: none;
 	padding: 7px;
 	box-shadow: 0px 0px 5px rgba(255, 237, 72, 0.74);
 }
 button:hover {
-	background-color: rgb(250, 211, 126);
+	background-color: rgb(252, 209, 116);
 	cursor: pointer;
 }
 .App-header {
@@ -54,6 +55,10 @@ button:hover {
 	background-color: rgb(241, 238, 238);
 	box-shadow: 2px 2px 3px rgba(255, 251, 36, 0.514);
 }
+.input-style {
+	font-size: 1.2em;
+}
+
 .search-wrapper {
 	display: grid;
 	margin: 20px;
@@ -99,10 +104,10 @@ button:hover {
 		grid-template-columns: 1fr;
 	}
 	.input-style {
-		font-size: 1.6em;
+		font-size: 1.3em;
 		width: 60%;
 	}
-	.style-h4 {
+	.style-h3 {
 		font-size: 1.8em;
 		margin: 10px;
 	}

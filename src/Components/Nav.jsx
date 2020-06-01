@@ -2,25 +2,22 @@ import React, { useState } from "react";
 import Favorite from "./Favorite";
 import "../nav.css";
 
-function Nav({ favorites, input }) {
+function Nav({ favorites, created }) {
 	const [showFav, setFav] = useState(false);
 	function showFavoriteComponent() {
 		setFav(true);
 	}
-
 	return (
 		<div>
 			<div className="nav-component">
-				{/* <h1>This is Nav</h1> */}
-
 				<button onClick={showFavoriteComponent}>
-					Favorites{" "}
+					Favorites
 					<span role="img" aria-label="heart">
 						❤️
 					</span>
 				</button>
 
-				{showFav ? <Favorite favorites={favorites} input={input} /> : null}
+				{showFav ? <Favorite favorites={favorites} created={created} /> : null}
 			</div>
 		</div>
 	);

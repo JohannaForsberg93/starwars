@@ -1,32 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Components/Header";
-// import Nav from "./Components/Nav";
 import axios from "axios";
-// import Add from "./Components/Add";
 import "./add.css";
 
 function App() {
-	const [state, setState] = useState([]); //Api-state
-	const [search, setSearch] = useState("");
-	const [filtered, setFiltered] = useState([]);
-	const [favorite, setFavorite] = useState([]); //Star wars-favoriterna
-	// const [input, setInput] = useState([]); // Egna favoriter
-	const [input, setInput] = useState([]);
-	const [newFav, setFav] = useState([]);
+	const [apiData, setApiData] = useState([]); //Alla personer från api:et
+	const [searchValue, setSearchValue] = useState(""); //Sökvärde
+	const [filteredValue, setFiltered] = useState([]); //Värdet efter man sökt
+	const [apiFavorite, setApiFav] = useState([]); //Star wars-favoriterna
+	const [created, setCreated] = useState({
+		alias: "",
+		skill: "",
+		skin: "",
+		img: "",
+	}); //Egna favoriter
+	const [createdFavorite, setCreatedFav] = useState([]); //En array med alla egna favoriter
 	const [success, setSuccess] = useState(false);
 
 	useEffect(() => {
 		setFiltered(
-			state.filter(
+			apiData.filter(
 				(element) =>
-					element.name.toLowerCase().includes(search.toLowerCase()) ||
-					element.eye_color.toLowerCase().includes(search.toLowerCase()) ||
-					element.hair_color.toLowerCase().includes(search.toLowerCase()) ||
-					element.birth_year.toLowerCase().includes(search.toLowerCase())
+					element.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+					element.eye_color.toLowerCase().includes(searchValue.toLowerCase()) ||
+					element.hair_color
+						.toLowerCase()
+						.includes(searchValue.toLowerCase()) ||
+					element.birth_year.toLowerCase().includes(searchValue.toLowerCase())
 			)
 		);
-	}, [search, state]);
+	}, [searchValue, apiData]);
 
 	useEffect(() => {
 		async function getPersons(i) {
@@ -41,67 +45,67 @@ function App() {
 				const result = await getPersons(i); //result får värdet av vad getPersons returnerar med i som parameter
 				array = array.concat(result.data.results); //array får all data från anropet x9
 			}
-			setState(array);
+			setApiData(array);
 		}
-		// getPersons();
 		loopFunction();
 	}, []);
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
-		e.target.reset();
 		setSuccess(true);
-		setFavorite([...favorite, { ...input }, { unreal: true }]); //Davids lösning
-		console.log("Värdet av favorite är nu", favorite);
-		// setFav({ ...input }, [...newFav]);
-		// console.log("Input", input);
-		// console.log("Newfav", newFav);
+		setCreatedFav([...createdFavorite, created]);
+		console.log("Värdet av input", created);
+		e.target.reset();
 	}
 	function handleChange(e) {
-		setInput({ ...input, [e.currentTarget.name]: e.currentTarget.value });
+		setCreated({ ...created, [e.currentTarget.name]: e.currentTarget.value });
 	}
-	// input={input}
+	const setImg = (event) => {
+		let image = event.target.files[0];
+		const reader = new FileReader();
+		reader.readAsDataURL(image);
+		reader.onload = function () {
+			const imageCode = reader.result;
+			setCreated({ ...created, img: imageCode });
+		};
+	};
 	return (
 		<div className="App">
 			<header className="App-header">
-				<Header favorites={favorite} />
+				<Header favorites={apiFavorite} created={createdFavorite} />
 			</header>
-
 			<div>
 				<br />
 				<h2 className="input-h2">
 					Search for a Star Wars character by name, eye color, hair color or
-					gender!
+					gender
 				</h2>
 				<div>
 					<input
 						className="search-component-input"
-						// className="input-field"
 						type="text"
 						required
 						placeholder="Search..."
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
+						value={searchValue}
+						onChange={(e) => setSearchValue(e.target.value)}
 					/>
 				</div>
-
 				<br />
-				<h4 className="style-h4">Or create your own character!</h4>
+				<h3 className="style-h3">Or create your own character!</h3>
 				<form onSubmit={handleSubmit}>
 					<input
 						className="input-style"
 						required
 						placeholder="Name"
 						type="text"
-						name="name"
+						name="alias"
 						onChange={handleChange}
 					/>
-					<br></br>
+					<br />
 					<input
 						className="input-style"
 						required
-						placeholder="Skills"
+						placeholder="Special skill"
 						type="text"
 						name="skill"
 						onChange={handleChange}
@@ -115,15 +119,21 @@ function App() {
 						onChange={handleChange}
 					/>
 					<br />
+					<input
+						type="file"
+						id="image"
+						accept=".png, .jpeg, .jpg"
+						onChange={setImg}
+					></input>
+					<br />
 					<input type="submit" className="add-button" value="Add" />
 					{success ? <h4>Successfully uploaded to Favorites!</h4> : null}
 				</form>
-
 				<br />
 				<br></br>
 			</div>
 			<div className="search-wrapper">
-				{filtered.map((person) => (
+				{filteredValue.map((person) => (
 					<div key={person.name}>
 						<h2>{person.name}</h2>
 						Eye color: {person.eye_color} <br />
@@ -133,7 +143,7 @@ function App() {
 						<br />
 						<br />
 						<p>Add to favorite</p>
-						<button onClick={() => setFavorite([...favorite, person])}>
+						<button onClick={() => setApiFav([...apiFavorite, person])}>
 							<span role="img" aria-label="heart">
 								❤️
 							</span>
