@@ -8,25 +8,39 @@ button {
 	font-size: 15px;
 	margin: 10px;
 	font-weight: 600;
-	/* background-color: rgb(253, 204, 99); */
-	background-color: rgb(255, 182, 25);
+	background-color: rgb(255, 190, 50);
 	border-radius: 5px;
 	border: none;
 	padding: 7px;
 	box-shadow: 0px 0px 5px rgba(255, 237, 72, 0.74);
 }
 button:hover {
-	background-color: rgb(252, 209, 116);
+	background-color: rgb(255, 206, 101);
 	cursor: pointer;
+}
+.add-button {
+	color: #20242c;
+	font-size: 15px;
+	margin: 10px;
+	font-weight: 600;
+	background-color: rgb(255, 190, 50);
+	border-radius: 5px;
+	border: none;
+	padding: 7px;
+}
+.add-button:hover {
+	background-color: rgb(255, 206, 101);
+	cursor: pointer;
+}
+.add-image {
+	font-size: 0.8em;
 }
 .App-header {
 	background-color: #282c34;
-	/* min-height: 100vh; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	/* font-size: calc(10px + 2vmin); */
 	color: rgb(225, 240, 22);
 }
 
@@ -57,8 +71,8 @@ button:hover {
 }
 .input-style {
 	font-size: 1.2em;
+	margin: 3px;
 }
-
 .search-wrapper {
 	display: grid;
 	margin: 20px;
@@ -110,5 +124,12 @@ button:hover {
 	.style-h3 {
 		font-size: 1.8em;
 		margin: 10px;
+	}
+	.add-image {
+		font-size: 1em;
+		width: 100px;
+	}
+	input[type="file"] {
+		color: transparent;
 	}
 }

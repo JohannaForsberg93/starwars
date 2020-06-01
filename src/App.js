@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import axios from "axios";
-import "./add.css";
 
 function App() {
 	const [apiData, setApiData] = useState([]); //Alla personer från api:et
@@ -14,7 +13,8 @@ function App() {
 		skill: "",
 		skin: "",
 		img: "",
-	}); //Egna favoriter
+	});
+	//Egna favoriter
 	const [createdFavorite, setCreatedFav] = useState([]); //En array med alla egna favoriter
 	const [success, setSuccess] = useState(false);
 
@@ -120,6 +120,7 @@ function App() {
 					/>
 					<br />
 					<input
+						className="add-image"
 						type="file"
 						id="image"
 						accept=".png, .jpeg, .jpg"

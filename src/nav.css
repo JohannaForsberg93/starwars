@@ -6,13 +6,13 @@ button {
 	font-size: 15px;
 	margin: 10px;
 	font-weight: 600;
-	background-color: rgb(253, 204, 99);
+	background-color: rgb(255, 190, 50);
 	border-radius: 5px;
 	border: none;
 	padding: 7px;
 	box-shadow: 0px 0px 5px rgba(255, 237, 72, 0.74);
 }
 button:hover {
-	background-color: rgb(250, 211, 126);
+	background-color: rgb(255, 206, 101);
 	cursor: pointer;
 }
